@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+
+<head>
+  <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="node_modules/angular-material-data-table/dist/md-data-table.min.css">
+  <link rel="stylesheet" href="ncontrol.css">
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+  <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+  <script src="node_modules/angular-messages/angular-messages.min.js"></script>
+  <script src="node_modules/angular-material/angular-material.min.js"></script>
+  <script src="node_modules/angular-route/angular-route.min.js"></script>
+  <script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
+  <script src="node_modules/angular-material-data-table/dist/md-data-table.min.js"></script>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <style>
+  
+   body{
+     background-image: url("4.png");
+
+}
+
+   .card{
+  background-color: lightblue;
+  border: 20px;
+}
+
+#navbar{
+  color: blue;
+}
+md-card  {
+padding:15px;
+}
+</style>
+</head>
+
+<body ng-app="myapp" ng-controller="appcontroller">
+
+  <div class="navbar navbar-default" id="navbar">
+    <h1><b>Shopping Window<b></h1>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+      <md-card class="card" md-theme="{{ showDarkTheme ? 'dark-grey' : 'inverse' }}" md-colors="::{backgroundColor: 'default-primary-700'}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <h2>Enter Staff Details</h2>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-action>
+         <input type="number" ng-model="staffid" placeholder="Enter ID">
+         <input type="text" ng-model="staffname" placeholder="Enter Name">
+         <br>
+         
+          <button type="submit" class="btn btn-primary" ng-click="staffenter()">Submit</button>
+        </md-card-action>
+      </md-card>
+      </div>
+
+       <div class="col-md-4">
+      <md-card class="card"  md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <h2>Enter Product Details</h2>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-action>
+         <input type="number" ng-model="productid" placeholder="Enter ID">
+         <input type="text" ng-model="productname" placeholder="Enter Name">
+         <br>
+          <button type="submit" class="btn btn-primary" ng-click="productenter()">Submit</button>
+        </md-card-action>
+      </md-card>
+      </div>
+
+       <div class="col-md-4">
+      <md-card class="card" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <h2>Enter Customer Details</h2>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-action>
+         <input type="number" ng-model="Customerid" placeholder="Enter ID">
+         <input type="text" ng-model="Customername" placeholder="Enter Name">
+         <br>
+          <button type="submit" class="btn btn-primary" ng-click="customerenter()">Submit</button>
+        </md-card-action>
+      </md-card>
+      <br>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <md-card class="card" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+          <md-card-title>
+            <md-card-title-text>
+              <h2>Staff</h2>
+            </md-card-title-text>
+          </md-card-title>
+          <a>
+            <h3> ID Name</h3>
+          </a>
+          <md-card-actions layout="row" ng-repeat="staffs in staff">
+            <p>
+              <h3>{{staffs.ID}} {{staffs.name}}</h3>
+            </p>
+          </md-card-actions>
+        </md-card>
+      </div>
+      <div class="col-md-4">
+        <md-card class="card" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+          <md-card-title>
+            <md-card-title-text>
+              <h2>Product</h2>
+            </md-card-title-text>
+          </md-card-title>
+          <a>
+            <h3> ID Name</h3>
+          </a>
+          <md-card-actions layout="row" ng-repeat="products in product">
+            <p>
+              <h3>{{products.ID}} {{products.name}}</h3>
+            </p>
+          </md-card-actions>
+        </md-card>
+      </div>
+      <div class="col-md-4">
+        <md-card class="card" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+          <md-card-title>
+            <md-card-title-text>
+              <h2>Customer</h2>
+            </md-card-title-text>
+          </md-card-title>
+          <a>
+            <h3> ID Name</h3>
+          </a>
+          <md-card-actions layout="row" ng-repeat="customers in customer">
+            <p>
+              <h3>{{customers.ID}} {{customers.name}}</h3>
+            </p>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <md-card class="card" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+          <md-card-title>
+            <md-card-title-text>
+              <h2>Staff</h2>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-action>
+            <input type="text" ng-model="searchstaff">
+            <button type="submit" class="btn btn-primary" ng-click="staffclick()">Search</button>
+          </md-card-action>
+          <a>
+            <h3> ID Name</h3>
+          </a>
+          <md-card-actions layout="row" ng-repeat="stafflist in staffdata track by $index">
+            <p>
+              <h3>{{stafflist.ID}} {{stafflist.name}}</h3>
+            </p>
+          </md-card-actions>
+        </md-card>
+      </div>
+
+      <div class="col-md-4">
+        <md-card class="card" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+          <md-card-title>
+            <md-card-title-text>
+              <h2>Product</h2>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-action>
+            <input type="text" ng-model="searchproduct">
+            <button type="submit" class="btn btn-primary" ng-click="productclick()">Search</button>
+          </md-card-action>
+          <a>
+            <h3> ID Name</h3>
+          </a>
+          <md-card-actions layout="row" ng-repeat="productlist in productdata track by $index">
+            <p>
+              <h3>{{productlist.ID}} {{productlist.name}}</h3>
+            </p>
+          </md-card-actions>
+        </md-card>
+      </div>
+
+      <div class="col-md-4">
+        <md-card class="card" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+          <md-card-title>
+            <md-card-title-text>
+              <h2>Customer</h2>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-action>
+            <input type="text" ng-model="searchcustomer">
+            <button type="submit" class="btn btn-primary" ng-click="customerclick()">Search</button>
+          </md-card-action>
+          <a>
+            <h3> ID Name</h3>
+          </a>
+          <md-card-actions layout="row" ng-repeat="customerlist in customerdata track by $index">
+            <p>
+              <h3>{{customerlist.ID}} {{customerlist.name}}</h3>
+            </p>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+  </div>
+  <br>
+
+</body>
+<script src="script.js"></script>
+
+</html>
